@@ -1,6 +1,6 @@
 // Global state
 let events = [];
-let currentDay = 1;
+let currentTab = 'day1';
 
 // Start app when DOM is ready
 if (document.readyState === 'loading') {
@@ -14,6 +14,18 @@ function init() {
   updateClock();
   setInterval(updateClock, 1000);
   loadEvents();
+  
+  // Show reminder after 3 seconds if not seen before
+  setTimeout(() => {
+    const hasChecked = localStorage.getItem('vrrAppChecked');
+    console.log('VRR App checked:', hasChecked);
+    if (!hasChecked) {
+      console.log('Showing reminder...');
+      showReminder();
+    } else {
+      console.log('Reminder already dismissed');
+    }
+  }, 3000);
 }
 
 // Load events from JSON
@@ -23,13 +35,17 @@ function loadEvents() {
     .then(data => {
       events = data.events || [];
       console.log('Loaded', events.length, 'events');
-      renderDay(currentDay);
+      // Start with day 1
+      renderDay(1);
       startCountdown();
     })
     .catch(err => {
       console.error('Error loading events:', err);
-      document.getElementById('timeline').innerHTML = 
-        '<div class="loading" style="color:#ef4444;">Fehler beim Laden der Events</div>';
+      const timeline = document.getElementById('timeline');
+      if (timeline) {
+        timeline.innerHTML = 
+          '<div class="loading" style="color:#ef4444;">Fehler beim Laden der Events</div>';
+      }
     });
 }
 
@@ -48,13 +64,29 @@ function updateClock() {
   document.getElementById('currentTime').textContent = now.toLocaleDateString('de-DE', opts);
 }
 
-// Switch day tab
-function switchDay(day) {
-  currentDay = day;
-  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', i + 1 === day);
-  });
-  renderDay(day);
+// Switch tab
+function switchTab(tab) {
+  currentTab = tab;
+  
+  // Update active button
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  
+  if (tab === 'day1') {
+    buttons[0].classList.add('active');
+    document.getElementById('timeline').style.display = 'block';
+    document.getElementById('stations').style.display = 'none';
+    renderDay(1);
+  } else if (tab === 'day2') {
+    buttons[1].classList.add('active');
+    document.getElementById('timeline').style.display = 'block';
+    document.getElementById('stations').style.display = 'none';
+    renderDay(2);
+  } else if (tab === 'stations') {
+    buttons[2].classList.add('active');
+    document.getElementById('timeline').style.display = 'none';
+    document.getElementById('stations').style.display = 'block';
+  }
 }
 
 // Render events for day
@@ -164,4 +196,34 @@ function startCountdown() {
 
 function pad(n) {
   return String(n).padStart(2, '0');
+}
+
+// Reminder functions
+function showReminder() {
+  const reminder = document.getElementById('appReminder');
+  if (reminder) {
+    console.log('Adding show class to reminder');
+    reminder.classList.add('show');
+  } else {
+    console.error('Reminder element not found!');
+  }
+}
+
+function closeReminder() {
+  const reminder = document.getElementById('appReminder');
+  if (reminder) {
+    reminder.classList.remove('show');
+  }
+}
+
+function confirmApp() {
+  localStorage.setItem('vrrAppChecked', 'true');
+  console.log('VRR App confirmed');
+  closeReminder();
+}
+
+// For testing: Reset reminder (call in console: resetReminder())
+function resetReminder() {
+  localStorage.removeItem('vrrAppChecked');
+  console.log('Reminder reset - reload page to see it again');
 }

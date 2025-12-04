@@ -186,8 +186,7 @@
       "title": "Treffpunkt Bonn HB",
       "location": "Bonn Hauptbahnhof",
       "description": "WICHTIG: Alle spätestens jetzt am Bahnhof!",
-      "type": "meeting",
-      "isImportant": true
+      "type": "meeting"
     },
     {
       "id": 18,
@@ -198,7 +197,6 @@
       "location": "Bonn HB Gleis 3",
       "description": "Zug nach Mannheim → Basel SBB → Individuell nach Hause",
       "type": "travel",
-      "isImportant": true,
       "isCountdown": true
     }
   ]

@@ -564,3 +564,194 @@ body {
   .footer-box p { font-size: 13px; line-height: 1.6; }
   .footer-credit { font-size: 12px; }
 }
+
+/* Stationen Section */
+.stations-section {
+  padding: 40px 0;
+}
+
+.station-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-left: 3px solid var(--bonn-blue);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.station-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--bonn-gold);
+}
+
+.station-info p {
+  color: #aaa;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.station-info strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Slide-in Reminder */
+.reminder-notification {
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 600px;
+  width: 90%;
+  z-index: 1000;
+  transition: bottom 0.4s ease-out;
+}
+
+.reminder-notification.show {
+  bottom: 20px;
+}
+
+.reminder-content {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px solid var(--bonn-blue);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.reminder-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.reminder-text {
+  flex: 1;
+}
+
+.reminder-text strong {
+  display: block;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.reminder-text p {
+  font-size: 13px;
+  color: #aaa;
+  margin: 0;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.reminder-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.reminder-btn.yes {
+  background: var(--bonn-blue);
+  color: #fff;
+}
+
+.reminder-btn.yes:hover {
+  background: #004a8f;
+}
+
+.reminder-btn.no {
+  background: transparent;
+  color: var(--bonn-gold);
+  border: 2px solid var(--bonn-gold);
+  display: inline-block;
+}
+
+.reminder-btn.no:hover {
+  background: var(--bonn-gold);
+  color: #000;
+}
+
+.reminder-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.reminder-close:hover {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .reminder-notification {
+    width: 95%;
+  }
+  
+  .reminder-notification.show {
+    bottom: 10px;
+  }
+  
+  .reminder-content {
+    padding: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .reminder-icon {
+    font-size: 24px;
+  }
+  
+  .reminder-text strong {
+    font-size: 14px;
+  }
+  
+  .reminder-text p {
+    font-size: 12px;
+  }
+  
+  .reminder-actions {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .reminder-btn {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .station-card {
+    padding: 15px;
+  }
+  
+  .station-card h3 {
+    font-size: 18px;
+  }
+  
+  .station-info p {
+    font-size: 13px;
+  }
+}

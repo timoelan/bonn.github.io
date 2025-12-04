@@ -50,11 +50,14 @@
     <!-- Tages-Tabs -->
     <div class="tabs-section">
         <div class="container">
-            <button class="tab-btn active" onclick="switchDay(1)">
+            <button class="tab-btn active" onclick="switchTab('day1')">
                 Samstag, 13. Dezember
             </button>
-            <button class="tab-btn" onclick="switchDay(2)">
+            <button class="tab-btn" onclick="switchTab('day2')">
                 Sonntag, 14. Dezember
+            </button>
+            <button class="tab-btn" onclick="switchTab('stations')">
+                Wichtige Stationen
             </button>
         </div>
     </div>
@@ -64,10 +67,96 @@
         <div id="timeline" class="timeline">
             <div class="loading">Lade Events...</div>
         </div>
+        
+        <!-- Wichtige Stationen -->
+        <div id="stations" class="stations-section" style="display: none;">
+            <!-- <div class="station-card">
+                <h3>Zürich HB</h3>
+                <div class="station-info">
+                    <p><strong>Treffpunkt:</strong> Freitag, 13.12. um 12:20</p>
+                    <p><strong>Gleis:</strong> wird noch bekannt gegeben</p>
+                    <p><strong>Ziel:</strong> Basel SBB - Bonn</p>
+                </div>
+            </div>
+            
+            <div class="station-card">
+                <h3>Basel SBB</h3>
+                <div class="station-info">
+                    <p><strong>Ankunft:</strong> 13:32</p>
+                    <p><strong>Abfahrt:</strong> 13:39</p>
+                    <p><strong>Umsteigezeit:</strong> 7 Minuten</p>
+                    <p><strong>Wichtig:</strong> Schnell umsteigen!</p>
+                </div>
+            </div>
+            
+            <div class="station-card">
+                <h3>Bonn Hauptbahnhof</h3>
+                <div class="station-info">
+                    <p><strong>Ankunft:</strong> Freitag, 13.12. um 16:43</p>
+                    <p><strong>Abfahrt Heimreise:</strong> Samstag, 14.12. um 15:14</p>
+                    <p><strong>Gleis Heimreise:</strong> Gleis 3</p>
+                </div>
+            </div> -->
+            
+            <div class="station-card">
+                <h3>Unterkunft</h3>
+                <div class="station-info">
+                    <p><strong>Adresse:</strong> Aennchenpl. 4, 53173 Bonn</p>
+                    <p><strong>Tram-Station:</strong> Bonn Plittersdorfer Str.</p>
+                    <p><strong>Linie:</strong> Tram 63/16 (ca. 20 Min vom HB)</p>
+                    <p><strong>Maps:</strong> <a href="https://maps.google.com/?q=Aennchenpl.+4,+53173+Bonn" target="_blank" style="color: var(--bonn-gold);">Route öffnen</a></p>
+                </div>
+            </div>
+            
+            <div class="station-card">
+                <h3>Restaurant</h3>
+                <div class="station-info">
+                    <p><strong>Adresse:</strong> Ollenhauerstraße 1, 53113 Bonn</p>
+                    <p><strong>Tram-Station:</strong> Ollenhauerstraße</p>
+                    <p><strong>Linie:</strong> Tram 63/16</p>
+                    <p><strong>Maps:</strong> <a href="https://maps.google.com/?q=Ollenhauerstraße+1,+53113+Bonn" target="_blank" style="color: var(--bonn-gold);">Route öffnen</a></p>
+                </div>
+            </div>
+            
+            <div class="station-card">
+                <h3>Museum</h3>
+                <div class="station-info">
+                    <p><strong>Adresse:</strong> Ahrstraße 45, 53175 Bonn</p>
+                    <p><strong>Von Unterkunft:</strong> ca. 10 Min zu Fuß</p>
+                    <p><strong>Workshop:</strong> Samstag, 14.12. um 11:00</p>
+                    <p><strong>Maps:</strong> <a href="https://maps.google.com/?q=Ahrstraße+45,+53175+Bonn" target="_blank" style="color: var(--bonn-gold);">Route öffnen</a></p>
+                </div>
+            </div>
+            
+            <div class="station-card">
+                <h3>Nützliche Infos</h3>
+                <div class="station-info">
+                    <p><strong>Tram-Tickets:</strong> VRR App nutzen</p>
+                    <p><strong>Notfall:</strong> Alle Telefonnummern im WhatsApp-Chat</p>
+                    <p><strong>Wetter:</strong> Warme Kleidung einpacken!</p>
+                </div>
+            </div>
+        </div>
     </main>
+    
+    <!-- VRR App Reminder -->
+    <div id="appReminder" class="reminder-notification">
+        <div class="reminder-content">
+            <div class="reminder-icon">⚠️</div>
+            <div class="reminder-text">
+                <strong>VRR App installiert?</strong>
+                <p>Brauchst du für alle Fahrten in Bonn</p>
+            </div>
+            <div class="reminder-actions">
+                <button class="reminder-btn yes" onclick="confirmApp()">Ja</button>
+                <a href="#vrr-section" class="reminder-btn no" onclick="closeReminder()">Installieren</a>
+            </div>
+            <button class="reminder-close" onclick="closeReminder()">&times;</button>
+        </div>
+    </div>
 
     <!-- VRR App Download Section -->
-    <section class="vrr-section">
+    <section id="vrr-section" class="vrr-section">
         <div class="container">
             <div class="vrr-box">
                 <h2>VRR App herunterladen</h2>
